@@ -6,25 +6,40 @@
 		<meta charset="UTF-8">
 		<title>Reagan Leon </title>
 		<link rel="stylesheet" type="text/css" href="Stylesheet/sample_Portfolio.css">
+		<script src="JS/sample_Portfolio.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script><!--We 
+		use a little bit of jQuery on this site now-->
 	</head>
 
 <!-- Body -->
 <body class="Background"> 
+<!--Fade in effects-->
+<script> <!--This script and function controls our fade in effect-->
+	document.body.className += 'fade-out';
+	$(function() {
+		$('body').removeClass('fade-out');
+	  }
+	);
+</script>
 
 <!-- Navbar -->
 	<div class="Navbar">
 		<a class="active" href="#Home">Home</a> 
+		<a href="#Slideshow">Slideshow</a><!--This is a new function-->
 		<a href="#About">About</a>
 		<a href="#GitHub">GitHub</a>
-		<a href="#Contact">Contact</a>
+		<a onclick="openform()">Contact</a><!--This makes it so that our openForm functions runs when we 
+		click Contact on the nav bar-->
 	</div>
+<!--This allows us to close the form when we click outside the nav bar or contact form-->
+<div class="btn cancel" onclick="closeForm()"></div>
 
 <!-- Home -->
 		<br> <!-- Breaks inserted to add space between navbar and first heading -->
 		<br>
 
 <!-- Video -->
-	<div id="Home">
+	<div id="Home"> 
 		<video autoplay muted loop id="Typing_Video"> <!-- Makes the video play automatically, on a loop and with no sound -->
 			<source src="Stylesheet/Video/Typing.mp4" type="video/mp4">
 			Your browser does not support HTML5 video. <!-- Display message if video fails to run -->
@@ -58,10 +73,94 @@
   
 		<div class="Column_1"> <!-- Right column -->
 			<h1>About</h2>
-				<p>I am a software developer who loves to code! As a father of two, I enjoy time with my family and traveling. <br><br>I am a graduate of <a href="https://www.learncodinganywhere.com" target="_blank">The Tech Academy</a>’s Software Developer Boot Camp, and trained and experienced in the following web and programming languages: HTML, CSS, JavaScript, SQL, C# and more. <br><br>I am a full-stack developer and would love to work with you on your project. <a href="#Contact">Contact</a> me below!</p>
+				<p>I am a software developer in training who loves to code! I enjoy time with my family and cats, and traveling. <br><br>I am a future graduate of <a href="https://www.learncodinganywhere.com" target="_blank">The Tech Academy</a>’s Software Developer Boot Camp, and trained and experienced in the following web and programming languages: HTML, CSS, JavaScript, SQL, C# and more. <br><br>I am a full-stack developer and would love to work with you on your project. <a href="#Contact">Contact</a> me below!</p>
 		</div>
 	</div>
+<!--Slideshow Section-->
+<div id="Slideshow">
+	<div id="Slideshow_Background">
+		<div id="Slideshow_Container">
 
+			<div class="mySlides fade">
+				<div class="Slide_Number">1 / 6</div>
+				<img class="Slide_Show_Images" src="C:\Users\maggi\OneDrive\Documents\GitHub\HTML-and-CSS-Projects\Final\Stylesheet\Images\Photo_of_me.jpg" style:"width:100%">
+				<div class="text">I'm available to assist you on your project!</div>
+			</div>
+			<div class="mySlides fade">
+				<div class="Slide_Number">2 / 6</div>
+				<img class="Slide_Show_Images" src="Stylesheet/Images/HTML_CSS_and_JavaScript.jpeg" style:"width:100%">
+				<div class="text">I am a full-stack software developer,<br> trained in:<br>HTML, CSS, and JavaScript,</div>
+			</div>
+			<div class="mySlides fade">
+				<div class="Slide_Number">3 / 6</div>
+				<img class="Slide_Show_Images" src="Stylesheet/Images/Phython.png" style:"width:100%">
+				<div class="text">the popular programming language Python,</div>
+			</div>
+			<div class="mySlides fade">
+				<div class="Slide_Number">4 / 6</div>
+				<img class="Slide_Show_Images" src="Stylesheet/Images/C_Sharp_and_Dot_NET.png" style:"width:100%">
+				<dic class="text">C#, .NET Framework, ASP.NET, MVC,</dic>
+			</div>
+			<div class="mySlides fade">
+				<div class="Slide_Number">5 / 6</div>
+				<img class="Slide_Show_Images" src="Stylesheet/Images/SQL_and_Database.jpg" style:"width:100%">
+				
+			</div>
+			<div class="mySlides fade">
+				<div class="Slide_Number">6 / 6</div>
+				<img class="Slide_Show_Images" src="Stylesheet/Images/Coding_1.jpg" style:"width:100%">
+				<div class="text">
+						<a onclick="openForm()" href="#Contact" style="color:white;">Contact me now!</a>
+				</div>
+			</div>
+			
+				<a class="Previous" onclick="plusSlides(-1)">&#10094;</a>
+				<a class="Next" onclick="plusSlides(1)">&#10095;</a>
+		</div>
+			<br>
+			<div style="text-align:center">
+				<span class="dot" onclick="currentSlide(1)"></span>
+				<span class="dot" onclick="currentSlide(2)"></span>
+				<span class="dot" onclick="currentSlide(3)"></span>
+				<span class="dot" onclick="currentSlide(4)"></span>
+				<span class="dot" onclick="currentSlide(5)"></span>
+				<span class="dot" onclick="currentSlide(6)"></span>
+
+			</div>
+		
+	</div>
+</div>
+
+<!-- We included our JS function within this file to ensure it was given precedence, this function covers the slideshow -->
+<script>
+		var slideIndex = 1;
+		  showSlides(slideIndex);
+		function plusSlides(n) {
+		  showSlides(slideIndex += n);
+		}
+		function currentSlide(n) {
+		  showSlides(slideIndex = n);
+		}
+		function showSlides(n) {
+		  var i;
+		  var slides = document.getElementsByClassName("mySlides");
+		  var dots = document.getElementsByClassName("dot");
+			if (n > slides.length) {slideIndex = 1}    
+			if (n < 1) {slideIndex = slides.length}
+			  for (i = 0; i < slides.length; i++) {
+			  slides[i].style.display = "none";  
+			  }
+			  for (i = 0; i < dots.length; i++) {
+				dots[i].className = dots[i].className.replace(" active", "");
+			  }
+		  slides[slideIndex-1].style.display = "block";  
+		  dots[slideIndex-1].className += " active";
+		}
+	  </script>
+	
+	
+	  
+		
 <!-- GitHub section -->
 	<div class="Row" id="GitHub">
 		<div class="Column_1"> <!-- Left column -->
@@ -76,24 +175,25 @@
 	</div>
 
 <!-- Contact section -->
-	<div class="Row" id="Contact"> 
-		<div class="Column_3"> <!-- Contact image, left column -->
-			<img src="Stylesheet/Images/Contact.jpg" alt="Contact_Image">
-		</div>
-	
-		<div class="Column_1"> <!-- Contact form, right "column" -->
-			<h1>Contact</h2> 
-				<form action="" method="get"> <!-- This specifies where to send the form data and how; it is left blank -->
-					<label>Name:</label>
-						<input type="text" placeholder="Please enter your name here">
-					<label>Email:</label>
-						<input type="text" id="Email" name="Email" placeholder="Please enter your email here">
-					<label>Message:</label>
-						<input type="text" id="Message" name="Message" placeholder="Please write your message here">
-						<input type="submit" value="Submit">
-				</form>
-		</div>
-	</div>
+<div id="Contact"> 
+		<button onclick="openForm()" class="Pop_Up_Button"> CONTACT </button>
+		  <div class="form-popup" id="myForm">
+			<form action="https://formspree.io/info@learncodinganywhere.com" method="POST" class="form-container"> <!-- Here we are using a free online service from https://formspree.io/ to send our contact form to an email address of our choosing - note: it will not run unless live on the internet, you have to push it to your online website first -->
+			<h1>Contact</h1>
+				<label for="name"><b>Name</b></label>
+				  <input type="text" placeholder="Type your name here" name="name" required>
+				<label for="phone"><b>Phone</b></label>
+				  <input type="text" placeholder="Enter your phone number here" name="phone">
+				<label for="email"><b>Email</b></label>		
+				  <input type="text" placeholder="Type your email address here" name="email" required>
+				<label for="message"><b>Message</b></label>
+				  <input type="text" placeholder="Type your message here" name="message">
+	 
+		<button type="submit" class="btn">SUBMIT</button>
+		<button type="button" class="btn cancel" onclick="closeForm()">CLOSE</button>
+			</form>
+		  </div>
+	  </div>
 	
 <!-- Footer section -->
 	<footer>
